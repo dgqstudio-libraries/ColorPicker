@@ -11,11 +11,14 @@ This is a custom component for Android that allows you to select a custom color.
 ### Gradle
 
 ```gradle
-repositories {
-    maven { url 'https://jitpack.io' }
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
 }
 dependencies {
-    implementation 'com.github.????</'
+    implementation 'com.github.dgqstudio-libraries:ColorPicker:1.0.0'
 }
 ```
 
@@ -30,9 +33,9 @@ dependencies {
 
 <!-- <dependencies> section of pom.xml -->
 <dependency>
-    <groupId>com.github.dgqstudio</groupId>
-    <artifactId>????</artifactId>
-    <version>????</version>
+    <groupId>com.github.dgqstudio-libraries</groupId>
+    <artifactId>ColorPicker</artifactId>
+    <version>1.0.0</version>
 </dependency>
 ```
 
