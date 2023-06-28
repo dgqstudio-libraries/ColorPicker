@@ -40,6 +40,7 @@ class ColorPicker @JvmOverloads constructor(
     private var showColorPickedPointer: Boolean
 
     // Variables
+    val colorViewCornerRadius: Float = 14f
     private var colorPickedPointerAnimator: ObjectAnimator? = null
 
     private var brightness: Int = 255 // 255: White, 0: Black
@@ -218,8 +219,13 @@ class ColorPicker @JvmOverloads constructor(
             height = colorView.height
         )
 
+        val limitTop: Int = 0 + colorViewCornerRadius.toInt()
+        val limitLeft: Int = 0 + colorViewCornerRadius.toInt()
+        val limitRight: Int = bitmap.width - (colorPickedLocator.width / 2)
+        val limitBottom: Int = bitmap.height - (colorPickedLocator.height / 2)
+
         val touchPositionIsOnBitmap: Boolean =
-            x > 0 && y > 0 && x < bitmap.width && y < bitmap.height
+            x > limitLeft && y > limitTop && x < limitRight && y < limitBottom
 
         if (touchPositionIsOnBitmap) {
             val pixel = bitmap.getPixel(x, y)
@@ -353,7 +359,9 @@ class ColorPicker @JvmOverloads constructor(
             orientation = GradientDrawable.Orientation.TR_BL
             gradientType = GradientDrawable.LINEAR_GRADIENT
             shape = GradientDrawable.RECTANGLE
+
             setStroke(2, Color.LTGRAY)
+            cornerRadius = colorViewCornerRadius
         }
 
         colorView.background = drawable
